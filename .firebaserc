@@ -1,0 +1,6 @@
+{
+  "projects": {
+    "default": "cms-devfest",
+    "staging": "cms4devfest-staging"
+  }
+}
