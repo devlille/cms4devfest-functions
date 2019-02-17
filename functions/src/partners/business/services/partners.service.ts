@@ -6,7 +6,7 @@ class PartnersService {
         return admin.firestore()
             .collection('partners')
             .where('edition', '==', editionId)
-            .where('activeOn', '<=', new Date().getTime())
+            .where('activeOn', '<=', new Date())
             .get()
             .then(query => {
                 const partners = {};
