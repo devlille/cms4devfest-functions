@@ -10,7 +10,7 @@ class SpeakersService {
             .then(query => {
                 const speakers = {};
                 query.forEach(doc => speakers[doc.id] = doc.data());
-                return speakers
+                return speakers;
             });
     }
 
