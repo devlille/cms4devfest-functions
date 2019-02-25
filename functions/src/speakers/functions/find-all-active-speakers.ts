@@ -1,6 +1,7 @@
 import * as cors from 'cors';
 import editionsService from '../../editions/business/services/editions.service';
-import partnersService from '../business/services/partners.service';
+
+import speakersService from '../business/services/speakers.service';
 
 function checkOrigin(request, callback) {
     const editionId = request.query.editionId;
@@ -24,22 +25,24 @@ export default (request, response) => {
         }
 
         return editionsService.findOne(editionId)
-            .then(() => partnersService.findAllActiveByEditionId(editionId))
-            .then(partners => {
-                const limitedPartners = {};
+            .then(() => speakersService.findAllActiveByEditionId(editionId))
+            .then(speakers => {
+                const limitedSpeakers = {};
 
-                Object.keys(partners).forEach(key => {
-                    limitedPartners[key] = {
-                        name: partners[key].name,
-                        url: partners[key].url,
-                        logoUrl: partners[key].logoUrl,
-                        level: partners[key].level
+                Object.keys(speakers).forEach(key => {
+                    limitedSpeakers[key] = {
+                        displayName: speakers[key].displayName,
+                        photoURL: speakers[key].photoURL,
+                        company: speakers[key].company,
+                        bio: speakers[key].bio,
+                        github: speakers[key].github,
+                        twitter: speakers[key].twitter
                     };
                 });
 
-                return limitedPartners;
+                return limitedSpeakers;
             })
-            .then(partners => response.send(partners))
+            .then(speakers => response.send(speakers))
             .catch(err => response.status(500).send({message: err.message}));
     });
 };

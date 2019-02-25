@@ -11,7 +11,7 @@ class PartnersService {
             .then(query => {
                 const partners = {};
                 query.forEach(doc => partners[doc.id] = doc.data());
-                return partners
+                return partners;
             });
     }
 
