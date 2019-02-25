@@ -11,8 +11,5 @@ export default (data, context) => {
 
     return editionsService.findOne(editionId)
         .then(edition => editionsService.findOneOnConferenceHall(edition.conferenceHall.eventId, edition.conferenceHall.apiKey))
-        .then(edition => edition.speakers)
-        .catch(err => {
-            throw new functions.https.HttpsError('internal', err);
-        });
+        .then(edition => edition.speakers);
 };
