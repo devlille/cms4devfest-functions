@@ -13,6 +13,6 @@ export default (data, context) => {
         .then(edition => editionsService.findOneOnConferenceHall(edition.conferenceHall.eventId, edition.conferenceHall.apiKey))
         .then(edition => edition.speakers)
         .catch(err => {
-            throw new functions.https.HttpsError('internal', err);
+            throw new functions.https.HttpsError('internal', err.message, err);
         });
 };
