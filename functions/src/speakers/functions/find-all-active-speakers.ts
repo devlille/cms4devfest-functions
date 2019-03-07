@@ -32,6 +32,7 @@ export default (request, response) => {
                 Object.keys(speakers).forEach(key => {
                     limitedSpeakers[key] = {
                         displayName: speakers[key].displayName,
+                        role: speakers[key].role,
                         photoURL: speakers[key].photoURL,
                         company: speakers[key].company,
                         bio: speakers[key].bio,
