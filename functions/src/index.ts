@@ -1,6 +1,8 @@
 import * as admin from 'firebase-admin';
 import * as functions from 'firebase-functions';
 
+import findOneFromConferenceHall from './editions/functions/find-one-from-conference-hall';
+
 import findAllActivePartners from './partners/functions/find-all-active-partners';
 import makeBillingForPartner from './partners/functions/make-billing-for-partner';
 
@@ -15,3 +17,5 @@ exports.makeBillingForPartner = functions.firestore.document('partners/{partnerI
 
 exports.findAllActiveSpeakers = functions.https.onRequest(findAllActiveSpeakers);
 exports.findAllSpeakersFromConferenceHall = functions.https.onCall(findAllSpeakersFromConferenceHall);
+
+exports.findOneFromConferenceHall = functions.https.onCall(findOneFromConferenceHall);
