@@ -1,8 +1,6 @@
 import * as admin from 'firebase-admin';
 import * as functions from 'firebase-functions';
-
 import findOneFromConferenceHall from './editions/functions/find-one-from-conference-hall';
-
 import findAllActivePartners from './partners/functions/find-all-active-partners';
 import makeBillingForPartner from './partners/functions/make-billing-for-partner';
 

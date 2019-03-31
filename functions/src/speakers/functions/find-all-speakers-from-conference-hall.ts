@@ -14,7 +14,7 @@ export default (data, context) => {
     }
 
     return editionsService.findOne(editionId)
-        .then(edition => editionsService.findOneOnConferenceHall(edition.conferenceHall.eventId, edition.conferenceHall.apiKey))
+        .then(edition => editionsService.findOneFromConferenceHall(edition.conferenceHall.eventId, edition.conferenceHall.apiKey))
         .then(edition => {
             return {speakers: edition.speakers};
         });
