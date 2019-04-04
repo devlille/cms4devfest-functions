@@ -7,6 +7,7 @@ import makeBillingForPartner from './partners/functions/make-billing-for-partner
 import findAllActiveSpeakers from './speakers/functions/find-all-active-speakers';
 import findAllSpeakersFromConferenceHall
     from './speakers/functions/find-all-speakers-from-conference-hall';
+import findAllActiveTalks from './talks/functions/find-all-active-talks';
 
 admin.initializeApp();
 
@@ -15,5 +16,7 @@ exports.makeBillingForPartner = functions.firestore.document('partners/{partnerI
 
 exports.findAllActiveSpeakers = functions.https.onRequest(findAllActiveSpeakers);
 exports.findAllSpeakersFromConferenceHall = functions.https.onCall(findAllSpeakersFromConferenceHall);
+
+exports.findAllActiveTasks = functions.https.onRequest(findAllActiveTalks);
 
 exports.findOneFromConferenceHall = functions.https.onCall(findOneFromConferenceHall);
