@@ -3,7 +3,9 @@ import editionsService from '../../editions/business/services/editions.service';
 
 export default (data, context) => {
     const editionId = data.editionId;
+    const state = data.state;
     console.log('editionId', editionId);
+    console.log('state', state);
 
     if (!context.auth) {
         throw new functions.https.HttpsError('unauthenticated', 'You must be authenticated to access this resource.');
@@ -14,8 +16,5 @@ export default (data, context) => {
     }
 
     return editionsService.findOne(editionId)
-        .then(edition => editionsService.findOneFromConferenceHall(edition.conferenceHall.eventId, edition.conferenceHall.apiKey))
-        .then(edition => {
-            return {speakers: edition.speakers};
-        });
+        .then(edition => editionsService.findOneFromConferenceHall(edition.conferenceHall.eventId, edition.conferenceHall.apiKey, state));
 };
