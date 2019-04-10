@@ -17,6 +17,6 @@ exports.makeBillingForPartner = functions.firestore.document('partners/{partnerI
 exports.findAllActiveSpeakers = functions.https.onRequest(findAllActiveSpeakers);
 exports.findAllSpeakersFromConferenceHall = functions.https.onCall(findAllSpeakersFromConferenceHall);
 
-exports.findAllActiveTasks = functions.https.onRequest(findAllActiveTalks);
+exports.findAllActiveTalks = functions.https.onRequest(findAllActiveTalks);
 
 exports.findOneFromConferenceHall = functions.https.onCall(findOneFromConferenceHall);

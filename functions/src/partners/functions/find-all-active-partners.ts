@@ -2,20 +2,12 @@ import * as cors from 'cors';
 import editionsService from '../../editions/business/services/editions.service';
 import partnersService from '../business/services/partners.service';
 
-function checkOrigin(request, callback) {
-    const editionId = request.query.editionId;
-    const origin = request.header('Origin');
-
-    editionsService.findOne(editionId)
-        .then(edition => `https://${edition.url}` === origin ? callback(null, {origin: true}) : callback(null, {origin: false}))
-        .catch(err => {
-            console.error('checkOrigin', err);
-            callback(err, {origin: false});
-        });
+function disableCors(request, callback) {
+    callback(null, true);
 }
 
 export default (request, response) => {
-    cors(checkOrigin)(request, response, () => {
+    cors(disableCors)(request, response, () => {
         const editionId = request.query.editionId;
         console.log('editionId', editionId);
 
