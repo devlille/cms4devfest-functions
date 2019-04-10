@@ -17,7 +17,7 @@ class EditionsService {
             });
     }
 
-    public findOneFromConferenceHall(editionId, apiKey, state = 'accepted'): Promise<any> {
+    public findOneFromConferenceHall(editionId, apiKey, state = 'confirmed'): Promise<any> {
         return fetch(`https://conference-hall.io/api/v1/event/${editionId}?key=${apiKey}&state=${state}`)
             .then(res => res.json())
             .then(res => {
