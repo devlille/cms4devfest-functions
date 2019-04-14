@@ -29,8 +29,8 @@ export default (request, response) => {
                         title: datas[0][key].title,
                         abstract: datas[0][key].abstract,
                         level: datas[0][key].level,
-                        format: datas[0][key].formats !== null ? datas[0][key].formats.name : '',
-                        category: datas[0][key].categories !== null ? datas[0][key].categories.name : '',
+                        format: datas[0][key].formats && datas[0][key].formats !== null ? datas[0][key].formats.name : '',
+                        category: datas[0][key].categories && datas[0][key].categories !== null ? datas[0][key].categories.name : '',
                         hour: `${time.getHours()}:${time.getSeconds()}`,
                         room: datas[0][key].room,
                         speakers: Object.keys(datas[0][key].speakers).map(speakerId => datas[1][speakerId].displayName)
