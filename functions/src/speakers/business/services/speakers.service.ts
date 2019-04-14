@@ -6,6 +6,7 @@ class SpeakersService {
         return admin.firestore()
             .collection('speakers')
             .where('edition', '==', editionId)
+            .orderBy('displayName', 'asc')
             .get()
             .then(query => {
                 const speakers = {};
