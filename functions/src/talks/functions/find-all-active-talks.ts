@@ -24,15 +24,13 @@ export default (request, response) => {
                 const limitedTalks = {};
 
                 Object.keys(datas[0]).forEach(key => {
-                    const time = moment(datas[0][key].hour.toDate());
-
                     limitedTalks[key] = {
                         title: datas[0][key].title,
                         abstract: datas[0][key].abstract,
                         level: datas[0][key].level,
                         format: datas[0][key].formats && datas[0][key].formats !== null ? datas[0][key].formats.name : '',
                         category: datas[0][key].categories && datas[0][key].categories !== null ? datas[0][key].categories.name : '',
-                        hour: time.format('HH:mm'),
+                        hour: datas[0][key].hour,
                         room: datas[0][key].room,
                         speakers: Object.keys(datas[0][key].speakers).map(speakerId => datas[1][speakerId].displayName)
                     };
