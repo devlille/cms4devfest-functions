@@ -3,7 +3,6 @@ import editionsService from '../../editions/business/services/editions.service';
 import speakersService from '../../speakers/business/services/speakers.service';
 
 import talksService from '../business/services/talks.service';
-import * as moment from 'moment';
 
 function disableCors(request, callback) {
     callback(null, true);
@@ -12,14 +11,16 @@ function disableCors(request, callback) {
 export default (request, response) => {
     cors(disableCors)(request, response, () => {
         const editionId = request.query.editionId;
+        const roomId = request.query.roomId;
         console.log('editionId', editionId);
+        console.log('roomId', roomId);
 
         if (editionId === undefined) {
             response.status(400).send({message: 'Required editionId field in the request.'});
         }
 
         return editionsService.findOne(editionId)
-            .then(() => Promise.all([talksService.findAllActiveByEditionId(editionId), speakersService.findAllActiveByEditionId(editionId)]))
+            .then(() => Promise.all([talksService.findAllActiveByEditionId(editionId, roomId), speakersService.findAllActiveByEditionId(editionId)]))
             .then(datas => {
                 const limitedTalks = {};
 
