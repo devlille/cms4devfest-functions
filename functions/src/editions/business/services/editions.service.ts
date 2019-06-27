@@ -3,7 +3,7 @@ import fetch from 'node-fetch';
 
 class EditionsService {
 
-    public findOne(editionId): Promise<any> {
+    public findOne(editionId: string): Promise<any> {
         return admin.firestore()
             .collection('editions')
             .doc(editionId)
@@ -39,6 +39,22 @@ class EditionsService {
                     talks: res.talks
                 };
             });
+    }
+
+    public extractAttendees(billetWebId: string, billetWebPrefix: string): Promise<any> {
+        function ticketToCategory(ticket){
+            if(ticket === 'SPEAKER' || ticket === 'BENEVOLE' || ticket === 'ORGANISATEUR' || ticket === 'STAND'){
+                return ticket
+            }
+            return "PARTICIPANT"
+        }
+        return fetch(`https://www.billetweb.fr/api/event/${billetWebId}/attendees?${billetWebPrefix}`)
+        .then(res => res.json())
+        .then(attendees => {
+            return attendees
+                .map(attendee => [attendee.firstname.charAt(0).toUpperCase() + attendee.firstname.slice(1)  + ' ' + attendee.name.toUpperCase(), attendee.custom.Entreprise.toUpperCase(), ticketToCategory(attendee.ticket)].join(';'))
+                .join('\n')
+        })
     }
 
 }

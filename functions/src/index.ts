@@ -8,6 +8,7 @@ import findAllActiveSpeakers from './speakers/functions/find-all-active-speakers
 import findAllSpeakersFromConferenceHall
     from './speakers/functions/find-all-speakers-from-conference-hall';
 import findAllActiveTalks from './talks/functions/find-all-active-talks';
+import extractAttendees from './editions/functions/extract-attendees'
 
 admin.initializeApp();
 
@@ -20,3 +21,4 @@ exports.findAllSpeakersFromConferenceHall = functions.https.onCall(findAllSpeake
 exports.findAllActiveTalks = functions.https.onRequest(findAllActiveTalks);
 
 exports.findOneFromConferenceHall = functions.https.onCall(findOneFromConferenceHall);
+exports.extractAttendees = functions.https.onRequest(extractAttendees);
